@@ -1,0 +1,12 @@
+body{
+/*    background-color: burlywood;*/
+}
+
+.jumbotron{
+    text-align: center;
+}
+
+#hero_image{
+    height: 550px;
+    margin: auto;
+}
