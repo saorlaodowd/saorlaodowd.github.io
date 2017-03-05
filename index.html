@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--Additional CSS-->
+    <!--Custom CSS-->
     <link rel="stylesheet" href="css/saorla.css">
+    <!--Google Fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Compiled JavaScript -->
@@ -17,16 +19,66 @@
     
 <body>
    <header>
-       <nav></nav>
+      <nav class="navbar">
+          <div class="container-fluid">
+<!--
+                <div class="navbar-header">
+                  <a href="#" class="navbar-brand"><img src="images/saorla_site_icon.jpg" id="saorla_icon"></a>
+                </div>
+-->
+                 <a href="#" class="navbar-left"><img src="images/saorla_site_icon.jpg" id="saorla_icon"></a>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Websites</a></li>
+                    <li><a href="#">D3</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Bio</a></li>
+                </ul> 
+          </div>        
+      </nav>
    </header>
    <div class="container">
-   <div class="jumbotron">
-    <h1>Saorla O'Dowd</h1>
-    <img src="saorla_hero_image.JPG" class="img-responsive" id="hero_image" alt="Hero Image">
-    <h3>Web developer, writer and coffee addict!</h3>
-    </div>
-    <p>If you've made your way here by accident - either by way of rabbithole or dodgy Portkey - do feel free to have a nose around. After all, the best adventures are the accidental ones...</p>
-    </div>
+       <div class="jumbotron">
+           <h1>Saorla O'Dowd</h1>
+           <img src="images/saorla_hero_image.JPG" class="img-responsive" id="hero_image" alt="Hero Image">
+           <h3>Web developer, writer and coffee addict!</h3>
+       </div>
+        <p>If you've made your way here by accident - either by way of rabbithole or dodgy Portkey - do feel free to have a nose around. After all, the best adventures are the accidental ones...</p>
+   </div>
+   <div class="container">
+      <div class="col-md-4">
+          <h3>Front-end Development</h3>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+          </p>
+      </div>
+      <div class="col-md-4">
+          <h3>Website Design</h3>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+          </p>
+      </div>
+      <div class="col-md-4">
+          <h3>Writing and Editing</h3>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+          </p>
+      </div>     
+   </div>
+
+  <footer class="footer">
+      <div class="container">
+          <div class="col-md-6">
+              <h4>Contact Me!</h4>
+              <p><span class="glyphicon glyphicon-envelope"></span> saorla.odowd@ucdconnect.ie</p>
+              <p><span class="glyphicon glyphicon-earphone"></span> +353-857337748</p>
+              
+          </div>
+          <div class="col-md-6">
+              <h4>Find Me Online</h4>
+              <p><span><a href=""><img src="images/black_twitter_square_icon.jpeg" class="footer_icon"></a></span> @Hoochmeister</p>
+              <p><span class=""></span></p>
+          </div>
+      </div>
+  </footer>
 </body>
     
 </html>
