@@ -1,0 +1,236 @@
+/*BODY OF PAGE*/
+
+body{
+    font-family: serif;
+    margin: 0;
+    background-image: url(../images/umbrella%20image.jpg);
+    background-repeat: no-repeat;
+    /*Google Font*/
+    font-family: 'Slabo 27px', serif;
+}
+
+/*WRAPPER AROUND BODY*/
+#wrapper{
+    max-height: 2500px;
+}
+
+
+/*HEADER STYLE*/
+
+header{
+    color:#000099;
+    font-weight:900;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+header h1{
+    font-size: 55px;
+}
+
+header h4{
+   font-size: 20px;
+}
+
+#title{
+/*div within the header which contains the text*/
+    background-color: floralwhite;
+    width: 45%;
+    margin-left: 35px;
+    border-radius: 30px;
+}
+
+/*USER INPUT FORM*/
+
+#forming{
+/*div which contains the simple form for user input*/
+    height: 150px;
+    opacity: 0.9;
+    background-color: #CC99FF;
+    border-radius: 20px;
+    overflow: auto;
+    font-size: 18px;
+}
+
+#forming ul{
+    display: block;
+    margin-left:100px;
+}
+
+#forming ul li{
+    list-style-type: none;
+    float: left;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    font-weight: 700;
+}
+
+#newform{
+/*simple form within the forming div*/
+    color: #000099;
+    font-weight: 600;
+    background-color: #FFFFCC;
+    max-width: 100%;
+    font-family: 'Slabo 27px', serif;
+    
+}
+
+#newform h1{
+    font-size: 25px;
+    color: darkslategray;
+    text-align: center;
+}
+
+.button{
+/*button to submit initial form*/
+    color: white;
+    background-color: #000099;
+    border-radius: 8px;
+    font-size: 25px;    
+}
+
+/*DAILY FORECAST DIV*/
+#weathering{
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+    color: #000099;
+    overflow: auto;
+}
+
+#weather_extras{
+    width:60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*GOOGLE MAP DIV*/
+#googleWeatherMap{
+    width: 100%;
+    height:580px;
+    margin: auto;
+    overflow: auto;
+}
+
+/*MAP LAYER FORM*/
+#layers{
+    color: #000099;
+    width: 25%;
+    height: 25px;
+    font-weight: 600;
+    margin: auto;
+    float: left;
+    overflow: auto;
+}
+
+#togglethis{
+  background-color: #CC99FF; 
+  padding: 2px;
+}
+
+/*CHECKBOX FORM FOR DAILY FORECAST*/
+#options{
+    width:100%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000099;
+}
+
+#options form{
+    background-color: #6699FF;
+    padding 0px 15px;
+}
+
+/*CLASSES FOR EACH FEATURE IN THE DAILY FORECAST TABLE*/
+
+.weatherinfo{
+    display: block;
+}
+
+.mintemp{
+    display: block;
+}
+
+.maxtemp{
+    display: block;
+}
+
+.rainfall{
+   display: block; 
+}
+.pressure{
+    display: none;
+}
+
+.humid{
+    display: none;
+}
+
+.windy{
+    display: none;
+}
+
+.more{
+    display: block;
+}
+
+#extras h4{
+    color: ;
+    font-weight: 500;
+    text-align: center;
+}
+
+/*DAILY FORECAST TABLE*/
+#weathering table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border-width: 1px;
+    width: 100%;
+    height: 40%;
+    text-align: center; 
+/*    font-weight: 600;*/
+    background-color: floralwhite;   
+}
+
+#weathering table tr, th{
+    padding: 20px;
+}
+
+#weathering table tr:nth-child(even){
+    /*change the colour of the even lines in the cv table*/
+    background-color:#6699FF;
+}
+
+#popup{
+    font-weight: 600;
+}
+
+/*3HR FORECAST TABLES*/
+#threeweather table{
+    text-align: center;
+    background-color: floralwhite;
+    height: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+    margin-left: auto;
+}
+
+.threehr_outer{
+    height: 20px;
+    width: 100px;
+    border: 1px solid #CC99FF;
+}
+.threehr_inner{
+    height: 20px;
+    margin: 0;
+    border-right: 1px dotted #CC99FF;
+    width: 100px;
+}
+
+.threehr_inner th{
+    width: 15px;    
+}
