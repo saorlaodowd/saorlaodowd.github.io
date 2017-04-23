@@ -1,6 +1,13 @@
+/*index.html*/
+@import url('//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
+
 body{
     font-family: 'Indie Flower', cursive;
-    font-size: 150%;
+    font-size: 180%;
+}
+
+.blue{
+    color: steelblue;
 }
 
 .jumbotron{
@@ -14,19 +21,20 @@ body{
     height: 100%;
     border-radius: 10px;
     position: absolute;
-    left: 45%;
+    left: 48%;
 }
 
 header{
     width: 100%;
     height: auto;
     background-color: white;
+    margin-bottom: 50px;
 }
 
 nav{
     font-size: 260%;
     height:auto;
-    margin-bottom: 20px;;
+/*    margin-bottom: 20px;*/
     padding: 1%;
     background-color: white;
     position:relative;
@@ -41,13 +49,89 @@ nav li{
     margin: auto;
 }
 
+.tag{
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.custom_list li{
+    display: block;
+}
+
+.custom_list li:before{
+    content: "\e125";
+    font-family: 'Glyphicons Halflings';
+    font-size: 13px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: cadetblue;
+    
+}
+
+.middle_col{
+    border-right: 1px solid cadetblue;
+    border-left: 1px solid cadetblue;
+    margin-bottom: 50px;
+}
+
+
+
+/*Interactive code adapted from http://www.hongkiat.com/blog/css-only-image-reveal-effect */
+
+#interactive_gollum{
+    --pic_dim: 100px;
+     width: var(--pic_dim);
+     height: var(--pic_dim);
+     background-color: skyblue;
+     position: relative;
+}
+
+/*render the pseudo-elements*/
+#interactive_gollum::before,#interactive_gollum::after{
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 0;
+}
+
+/*add an ease-in transition*/
+#interactive_gollum,#interactive_gollum:hover,#interactive_gollum::before,#interactive_gollum::after,#interactive_gollum:hover::before,#interactive_gollum:hover::after{
+    transition: 550ms ease-in;
+}
+
+/*add background image to ::before*/
+#interactive_gollum::before{
+    width: 100%;
+    height: 100%;
+    background: url(../images/Gollum.jpg) center/cover;
+    z-index: -1;
+}
+
+#interactive_gollum::after{
+   --b: 20px;
+   width: calc(100% - var(--b));
+   height: calc(100% - calc(var(--b) * 2));
+   border: var(--b) solid transparent;
+   border-left: none;
+   box-shadow: inset 0 var(--dim) 0 var(--bgc);
+   filter: brightness(.8);
+   z-index: -2; 
+}
+
+/*use translate method to move img from its current position, according to X and Y*/
+#interactive_gollum:hover::before,#interactive_gollum:hover::after{
+    transform: translate(200%,100%);
+}
+
 
 .footer{
     width: 60%;
     margin: auto;
     margin-top: 50px;
     background-color: skyblue;
-    font-size: 150%;
+    font-size: 120%;
 }
 
 .footer .container{
@@ -60,4 +144,30 @@ nav li{
 
 .footer h4{
     text-align: center;
+}
+
+
+/*bio.html*/
+
+
+
+/*gallery.html*/
+
+.gallery_header{
+    text-align: center;
+}
+
+.image_row{
+    
+}
+
+.image_col{
+    width: 25%;
+    float: left;
+}
+
+.image_col img{
+    width: 100%;
+    height: 40%;
+    image-orientation: from-image;
 }

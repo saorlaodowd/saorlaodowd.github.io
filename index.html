@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="css/saorla.css">
+    <!--Custom JavaScript-->
+    <script src="js/saorla.js"></script>
     <!--Google Fonts-->
    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- jQuery library -->
@@ -26,14 +28,22 @@
                   <a href="#" class="navbar-brand"><img src="images/saorla_site_icon.jpg" id="saorla_icon"></a>
                 </div>
 -->
-                 <a href="#" class="navbar-left"><img src="images/saorla_site_icon.jpg" id="saorla_icon"></a>
+                 <a href="index.html" class="navbar-left"><img src="images/saorla_site_icon.jpg" id="saorla_icon"></a>
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Websites</a></li>
-                    <li><a href="#">D3</a></li>
+
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Websites<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="forecaster.html">Weather Forecast</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="#">A third webpage</a></li>
+                        </ul>
+                    </li>
+                    
+<!--                    <li><a href="#">D3</a></li>-->
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Bio</a></li>
+                    <li><a href="bio.html">Bio</a></li>
                 </ul> 
           </div>        
       </nav>
@@ -44,23 +54,36 @@
            <img src="images/saorla_hero_image.JPG" class="img-responsive" id="hero_image" alt="Hero Image">
            <h3>Web developer, writer and coffee addict!</h3>
        </div>
-        <p>If you've made your way here by accident - either by way of rabbithole or dodgy Portkey - do feel free to have a nose around. After all, the best adventures are the accidental ones...</p>
+        <p class="tag">If you've made your way here by accident - either by way of rabbithole or dodgy Portkey - do feel free to have a nose around. After all, the best adventures are the accidental ones...</p>
    </div>
    <div class="container">
       <div class="col-md-4">
           <h3>Front-end Development</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+          <p>The front is where the party is!</p>
+          <p>I've developed websites using a variety of web technologies, including:
+              <ul class="custom_list">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                  <li>Ruby</li>
+                  <li>AngularJS</li>
+                  <li>D3</li>
+              </ul>
           </p>
+          
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 middle_col">
           <h3>Website Design</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+          <p>I love fun, interactive and intuitive websites.</p>
+          <p>Bright colours, interesting imagery and sleek new features can keep your visitors coming back for more.
           </p>
+          <div id="interactive_gollum"></div>
+          <p>(Or weird Gollum popups!)</p>
       </div>
       <div class="col-md-4">
           <h3>Writing and Editing</h3>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
-          </p>
+          <p>In 2014, I finished my B.A. in English Literature and Drama Studies at Trinity College Dublin.</p>
+          <p>Now I write for fanfiction.net, am redrafting my debut novel, and will be introducing my new blog shortly!</p>
       </div>     
    </div>
 
