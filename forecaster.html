@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather Forecast</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel = "stylesheet" type = "text/css" href="css/weather.css">
+<!--import Google font-->
+<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+<!--Google Maps API!-->
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBbXrgdjjw09bdTxFQZlENHvTjYp9QUOCs&libraries=places&callback=initAutocomplete" async defer>
+
+</script>
+</head>
+        
+<body>
+<div id="wrapper">    
+<!--Header  -->
+<header>
+    <div id = 'title'>
+    <h1>World Weather Data</h1>    
+    <h4>Up to date weather forecasts from around the world</h4></div>
+</header> 
+
+<!--div which contains the simple form for user input-->
+<div id="forming">
+<form action="" onsubmit="return createURL()" id="newform">
+  <ul> 
+    <li>     
+        Enter Location:<br><br>
+        <input type="text" id="location"><br><br>
+    </li> 
+    <li>
+        Units of Measurement: <br><br>    
+        <input type="radio" name="units" value="metric" checked> Celsius
+        <input type="radio" name="units" value="imperial"> Fahrenheit<br><br>
+   </li>
+    <li>      
+        Number of Days:<br><br>
+        <input type="radio" name="days" value="1"  checked> One
+        <input type="radio" name="days" value="2"> Two 
+        <input type="radio" name="days" value="3"> Three
+        <input type="radio" name="days" value="4"> Four
+        <input type="radio" name="days" value="5"> Five<br><br>
+    </li>
+    <li>
+    <br>     
+        <input type="submit" class="button" value="Get Forecast!"><br><br>
+    </li>
+   </ul>  
+</form>
+</div>
+<!-- div where the optional weather features form will be displayed-->
+<div id="options"></div>     
+<!--div in which the daily weather info will be displayed!-->
+<div id="weathering"></div>
+<!--div where the layer radio form will be displayed -->
+<div id="layers"></div>
+<!--div where map will be displayed-->    
+<div id="googleWeatherMap"></div> 
+
+    
+<!--Javascript content begins here!-->
+<script>
+
+//declaring variables that can be accessed by all functions in the script    
+var symbol = "";
+var speed ="";
+    
+    
+    function initAutocomplete() {
+    //the following code is from https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform 
+         
+        // Create an autocomplete object, which adds locations based on the user's location input
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('location')),
+            {types: ['geocode']});
+       
+     };
+    
+    function createURL(){
+    //function which creates a URL to collect daily weather info based on user input 
+    console.log(document.getElementById("location").value);
+        
+    //if the user has entered a valid location, create a url to call the daily weather JSON    
+        if (document.getElementById("location").value != ""){    
+            var location = document.getElementById("location").value;
+        
+            //loop through form input 'units' and assign var units to whichever value is checked
+            var units = document.getElementsByName("units");
+            for(i=0; i<units.length; i++){
+                var type = units[i].value;
+                if(units[i].checked){   
+                    units = units[i].value;
+                    if (type=="metric"){
+                        symbol="\xB0C";
+                        speed=" m/sec";
+                    }
+                    else{
+                        symbol="\xB0F";
+                        speed=" mph";
+                    }
+                }
+            }
+    
+            //loop through form input 'days' and assign var days to whichever value is checked    
+            var days = document.getElementsByName("days");
+            for(i=0; i<days.length; i++){
+                if(days[i].checked){
+                    days = days[i].value;
+                }
+            }
+    
+    
+            //create variable url which reads in the form input    
+            var url = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+location+"&mode=json&APPID=f733dff4caf731efa61eea74254d6285&units="+units+"&cnt="+days;
+            
+            //print url in the console to check it
+            console.log(url);
+        
+            //call function to send the xmlhttp request to the new url
+            sendRequest(url);
+            // return false to stop the page refreshing
+            return false;
+        }   
+        //if the user has submitted the form without inputing a location, an alert appears     
+        else{
+            alert("No location was entered; please try again");
+            return false;
+        }
+    } 
+
+    function threehrURL(timestamp){
+    //function which creates a URL to collect 3hr weather data based on user input     
+        
+        var location = document.getElementById("location").value;
+        //loop through form input 'units' and assign var units to whichever value is checked
+        var units = document.getElementsByName("units");
+        for(i=0; i<units.length; i++){
+            var type = units[i].value;
+            if(units[i].checked){   
+                units = units[i].value;
+                if (type=="metric"){
+                    symbol="\xB0C";
+                    speed=" m/sec";
+                }
+                else{
+                    symbol="\xB0F";
+                    speed=" mph";
+                }
+            }
+        }
+    
+    
+        //create variable url which reads in the form input for the 3hr forecast    
+        var url = "http://api.openweathermap.org/data/2.5/forecast?q="+location+"&mode=json&APPID=f733dff4caf731efa61eea74254d6285&units="+units+"&cnt=40";
+        
+        //print url in the console to check it
+        console.log(url);
+        
+        //call function to send the xmlhttp request to the new url
+        threehrRequest(url, timestamp);
+        // return false to stop the page refreshing
+        return false;
+    }
+     
+    function sendRequest(request){
+    //function which sends the daily url request to openweather   
+        
+        //create xmlhttp object
+        var xmlhttp = new XMLHttpRequest();  
+        //make the request
+        xmlhttp.open("GET", request, true);
+        //send the request
+        xmlhttp.send();   
+        
+        xmlhttp.onreadystatechange=function() {
+        //function which checks if the server is ready to send a response back to you    
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                myDailyFunction(xmlhttp.responseText);
+                
+                //print the JSON response to the console
+                console.log(xmlhttp.responseText);
+            }   
+        }
+    }
+    
+    function threehrRequest(request, timestamp){
+    //function which sends the three hour url request to openweather   
+        
+        //create xmlhttp object
+        var xmlhttp = new XMLHttpRequest();  
+        //make the request
+        xmlhttp.open("GET", request, true);
+        //send the request
+        xmlhttp.send();   
+        
+        xmlhttp.onreadystatechange=function() {
+            //function which checks if the server is ready to send a response back to you
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                myFunction(xmlhttp.responseText, timestamp);
+                
+                //print the JSON to the console
+                console.log(xmlhttp.responseText);
+            }   
+        }
+    }
+    
+    //The following two unix conversion functions are based on the code from http://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript 
+    
+    function convertDT(datetime){
+        //function which tidies up the date and day, and removes the time for the daily forecasts
+        
+        var newDT = new Date(datetime*1000);
+        //store days of the week and months of the year in two separate arrays
+        var everyday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var mi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        
+        //use built-in functions from Date to store the day, month, year and date in variables, and then put them together to create the date
+        var oneday = everyday[newDT.getDay()];
+        var onemonth = mi[newDT.getMonth()];
+        var thisyear = newDT.getFullYear();
+        var thisdate = newDT.getDate();
+       
+        var thistime = oneday +", "+ thisdate + " " + 
+            onemonth + " " + thisyear + " ";
+        
+        return thistime;
+    }
+    
+    function convertTime(UNIX_time){
+        //function to convert the unix timestamp to military time for the three hour forecasts
+        var newTime = new Date(UNIX_time*1000);
+        //use built-in functions from Date to store the hour and minute in variables, and then put them together to create the time
+        var hour = newTime.getHours();
+        var min = newTime.getMinutes();
+
+        var timestamp = hour + ":" + min +"0";
+        
+        return timestamp
+    }
+    
+    function myDailyFunction(response){
+        //function which parses the JSON response from sendRequest() and creates a table for the daily weather forecast
+        var arr = JSON.parse(response); 
+        //create a html table in a JSON string
+        var dailytable = "<table id='daily'><tr>"+
+        "<th>Date</th>"+
+        "<th><p class='weatherinfo'>Main Forecast</p></th>"+
+        "<th><p class='weatherinfo'>Description</p></th>"+
+        "<th></th>"+
+        "<th><p class='mintemp'>Minimum Temp.</p></th>"+
+        "<th><p class='maxtemp'>Maximum Temp.</p></th>"+
+        "<th><p class='rainfall'>Predicted Rainfall</p></th>"+
+        "<th><p class='pressure'>Pressure</p></th>"+
+        "<th><p class='humid'>Humidity</p></th>"+
+        "<th><p class='windy'>Wind Speed</p></th>"+
+        "<th><p class='more'>3 Hr Forecast</p></th></tr><br>";
+        //iterate through the JSON response, and create variables containing the latitude and longitude of the location, and the weather icon
+        for(var i = 0; i < arr.list.length; i++) {
+        var weather_icon = arr.list[i].weather[0].icon;
+        var lat = arr.city.coord.lat;
+        var lon = arr.city.coord.lon; 
+        
+        //in each iteration, add a row to the table containing a variety of weather features     
+        dailytable += "<tr><td>"+
+        convertDT(arr.list[i].dt) +
+        "</td><td><p class='weatherinfo'>";
+        dailytable += arr.list[i].weather[0].main +
+        "</p></td><td><p class='weatherinfo'>";
+        dailytable += arr.list[i].weather[0].description +
+        "</p></td><td>";
+        dailytable += "<IMG SRC='http://openweathermap.org/img/w/" + weather_icon + ".png'> " +
+        "</td><td><p class='mintemp'>";
+        dailytable += arr.list[i].temp.min+symbol +
+         "</p></td><td><p class='maxtemp'>";
+        dailytable += arr.list[i].temp.max+symbol +
+        "</p></td><td><p class='rainfall'>";
+        dailytable += (arr.list[i].hasOwnProperty('rain')?arr.list[i].rain:'NA') +" mm"+
+        "</p></td><td><p class='pressure'>";
+        dailytable += arr.list[i].pressure+" hPa" +
+        "</p></td><td><p class='humid'>";
+        dailytable += arr.list[i].humidity + "%"+
+        "</p></td><td><p class='windy'>";
+        dailytable +=arr.list[i].speed+speed +
+        "</p></td><td>";
+        //add a link to act as a button    
+        dailytable +="<a href='#' id='popup' onclick='threehrURL("+arr.list[i].dt+")'>More</a>" +  
+        "</td></tr><br>";
+        }
+        
+        dailytable += "</table>";
+        //send the string to the dailytable div in the HTML    
+        document.getElementById("weathering").innerHTML = dailytable;
+        
+        //call function to create optional form
+        optionalForm();
+        //call function to update the Google map    
+        updateMap(lat,lon);
+        //call function to create a the layer toggle for the map   
+        createToggleForm();
+    }
+    
+    function myFunction(response, timestamp) {
+    //function which parses the JSON response from threehrRequest() and creates a table for the 3 hour forecast
+    
+        //create a new div element    
+        var div = document.createElement('div');
+        div.id = "threeweather";
+        var r = JSON.parse(response);
+        
+        //create a html table in a JSON string
+        var out = "<table class='threehr_outer'>";
+        
+        //iterate through the JSON response
+        for(var i = 0; i < r.list.length; i++) {
+        
+        //set a condition in which only the three hour forecasts that share the same date will be added to the table  
+            if (new Date(timestamp*1000).getDate()== new Date(r.list[i].dt*1000).getDate()){   
+                var weather_icon = r.list[i].weather[0].icon;
+                var lat = r.city.coord.lat;
+                var lon = r.city.coord.lon;
+                out += "<td><table class='threehr_inner'><tr><th colspan='2'>"+
+                convertTime(r.list[i].dt) +
+                "</th></tr><tr><td><th>Weather</th></td><td>";
+                out += r.list[i].weather[0].description +
+                "</td></tr><tr><td><th></th></td><td>";
+                out += "<IMG SRC='http://openweathermap.org/img/w/" + weather_icon + ".png'> " +
+                "</td></tr><tr><td><th>Max Temp</th></td><td>";
+                out += r.list[i].main.temp_max+symbol +
+                "</td></tr><tr><td><th>Sea Level</th></td><td>";
+                out+= r.list[i].main.sea_level+
+                "</td></tr></table></td>";
+            }
+        }
+        
+        out += "</table>";
+        //check the table info on the console
+        console.log("out = " + out);
+
+        //send the table string to the HTML div element
+        div.innerHTML = out;
+        console.log(lat + " " + lon)
+    
+        //following code adapted from http://www.w3schools.com/googleapi/google_maps_events.asp
+        
+        //put the div table into a variable, which is then used by the infoWindow constructor to place it into an info window on the map
+        var infoContent = div;   
+        var infowindow = new google.maps.InfoWindow({
+            content: infoContent, 
+            maxWidth: 305
+        });
+    
+        //open the infowindow on the marker on the map    
+        infowindow.open(map,marker);
+        //create an event listener which allows the infowindow to open and close on clicking
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+        });   
+    } 
+
+   
+    function createToggleForm(){
+    //function which creates a form in a JSON string. This form allows the user to  toggle between map layers
+        var togs = "<form action='' id='togglethis'>";
+        togs+=
+        "<input type='radio' name='maplayer' value='nope' onchange='showLayer()' checked> No Layers"+
+        "<input type='radio' name='maplayer' value='cycle' onchange='showLayer()'> Bike Layer"+ 
+        "<input type='radio' name='maplayer' value='drive' onchange='showLayer()'> Transit Layer";
+        togs+="</form>";
+        //send the form to the div 'layers'
+        document.getElementById('layers').innerHTML = togs;
+    }    
+    
+    function optionalForm(){
+    //function which creates form in which optional weather details can be chosen 
+        var forming = "<form action='' id='extras'>";
+ 
+        forming+="<input type='checkbox' name='map' id='checkmap' checked='' onchange='showMap()'>Map"+
+        "<input type='checkbox' name='weatherdetails' id='checkweather' onchange='showContent(&quot;weatherinfo&quot;)' checked=''>Weather Information"+
+        "<input type='checkbox' name='mintemp' id='checktemp1' checked='' onchange='showContent(&quot;mintemp&quot;)'>MinTemperature"+
+        "<input type='checkbox' name='maxtemp' id='checktemp2' checked='' onchange='showContent(&quot;maxtemp&quot;)'>MaxTemperature"+  
+        "<input type='checkbox' name='rainfall' id='checkrain' checked='' onchange='showContent(&quot;rainfall&quot;)'>Predicted Rainfall"+   
+        "<input type='checkbox' name='pressure' id='checkpress'  onchange='showContent(&quot;pressure&quot;)'>Pressure"+
+        "<input type='checkbox' name='humid' id='checkhumid' onchange='showContent(&quot;humid&quot;)'>Humidity"+
+        "<input type='checkbox' name='wind' id='checkwind' onchange='showContent(&quot;windy&quot;)'>Wind Speed";
+        
+        forming+="</form>";
+        //send the form string to the div 'options'
+        document.getElementById("options").innerHTML = forming;
+    }   
+    
+    function showMap(){
+     //function that shows or hides the map when a checkbox is clicked 
+        
+        //set variables for the form checkbox and the div where the map is displayed
+        var showOptions = document.getElementById("checkmap");
+        var showThing = document.getElementById("googleWeatherMap");
+        // if the box is checked, show the map. If it is unchecked, hide the map.
+        if(showOptions.checked) {
+            showThing.style.display = "block";
+        }
+        else{
+            showThing.style.display = "none";
+        }
+      
+    }
+  
+    function showContent(input){
+    //function that takes in the name of a class and shows or hides the contents of that class when a checkbox is clicked 
+    
+        //following code adapted from http://www.w3schools.com/css/css_display_visibility.asp AND http://www.w3schools.com/jsref/prop_element_offsetheight.asp 
+        var showThing = document.getElementsByClassName(input);
+        //check the viewable height of the element. If it is 0, show the element. If not, hide it.  
+        if(showThing[0].offsetHeight==0){
+            for(var i=0; i<showThing.length; i++){
+                showThing[i].style.display = "block";
+            }
+        }
+        else{
+            for(var i=0; i<showThing.length; i++){
+                showThing[i].style.display = "none";
+            }
+        }
+    
+    }    
+    
+    
+    function updateMap(lati, long){
+    //function that loads a google map into the page. This map is passed the latitude and longitude of the location the user inputed, and uses it to find the place on the map.
+    
+        //following code adapted from http://www.w3schools.com/googleapi/google_maps_events.asp AND https://developers.google.com/maps/documentation/javascript/overlays
+    
+        var mapDiv = document.getElementById('googleWeatherMap');
+    
+        var latLon = {lat: lati, lng: long};
+        //create the map based on the latitude and longitude
+        map = new google.maps.Map(mapDiv, {
+            center: latLon,
+            zoom: 12
+        });
+    
+        console.log("this is the lat and lon of the location:"+latLon);
+     
+        //create variables for layers that show bicycle and traffic routes on the map
+        bikeLayer = new google.maps.BicyclingLayer();
+        transitLayer = new google.maps.TransitLayer();
+    
+        //create marker on the map based on lat/lon
+        marker = new google.maps.Marker({
+            position: latLon,        
+            //make the marker bounce
+            animation:google.maps.Animation.BOUNCE,
+            map: map
+        });    
+    
+    }
+    
+    function showLayer(){
+        //this function is called from within the layer radio button form, and activates whichever layer is chosen
+        var t_layer = document.getElementsByName("maplayer");
+        //for each form element with the name 'maplayer',test if it has been checked by the user. If it has, display the selected layer and hide the others. 
+        for(var i=0; i<t_layer.length; i++){
+            if(t_layer[0].checked){
+               bikeLayer.setMap(null);
+               transitLayer.setMap(null);    
+            }
+            else if(t_layer[1].checked){
+                bikeLayer.setMap(map);
+                transitLayer.setMap(null);
+            }
+            
+            else if(t_layer[2].checked){
+               transitLayer.setMap(map);
+               bikeLayer.setMap(null);    
+            }
+        }
+    }
+    
+//built-in javascript function which catches invalid user input in the location search bar  
+window.onerror=function(){
+    alert("This input is not valid");
+    return false;
+}    
+    
+</script>
+<!--end of Javascript content-->
+</div>    
+</body>    
+</html>
