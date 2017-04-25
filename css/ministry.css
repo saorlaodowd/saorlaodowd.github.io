@@ -1,0 +1,35 @@
+html, #home{
+    background-color: black;
+    color: whitesmoke;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    min-height: 100%;
+    position: relative;
+}
+
+#home header{
+    max-width: 250px;
+    margin: auto;
+}
+
+#home header img{
+    max-height: 250px;
+    max-width: 100%;
+}
+
+#main_content{
+    min-height: 100%;
+    position: relative;
+    /*force container to respect the height of all elements within it, regardless of floating elems*/
+    overflow: hidden;
+}
+
+#home h1{
+    font-family: 'Kumar One', cursive;
+    text-align: center;
+    font-size: 40px;
+}
